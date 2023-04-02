@@ -1,0 +1,48 @@
+I want to build a Deep Learning Algo on LISA Dataset to detect and predict the traffic signs in real time.
+my plan is to build 2 NN models.
+1st is an unsupervised NN model which detects if there is sign board in the current frame, and if there is a signboard, it needs to be cropped out and this cropped image should be the the output.
+2nd model is a supervised NN model which predicts the sign board. Note that the input of this model is the output of the 1st NN model.
+Now please give me a blueprint to develop this project. 
+
+Data Preparation:
+a. Download and explore the LISA dataset (http://cvrr.ucsd.edu/LISA/lisa-traffic-sign-dataset.html). This dataset contains annotated images of US traffic signs.
+b. Split the dataset into training, validation, and testing sets (e.g., 70% training, 15% validation, and 15% testing).
+c. Perform data augmentation to increase the diversity and size of your dataset, including transformations like rotation, scaling, and flipping.
+
+Develop the first unsupervised NN model for traffic sign detection:
+a. Choose an appropriate unsupervised learning technique, such as autoencoders or clustering algorithms like K-means.
+b. Train the unsupervised model on the training dataset. The goal is to learn useful features that can be used to identify the presence of traffic signs in an image.
+c. Evaluate the performance of the unsupervised model using the validation dataset.
+d. Once satisfied with the model's performance, implement a function to crop the detected traffic sign from the input image.
+
+Develop the second supervised NN model for traffic sign classification:
+a. Choose a suitable architecture for the classification task, such as a Convolutional Neural Network (CNN) or a pre-trained model like ResNet, MobileNet, or EfficientNet.
+b. Train the supervised model on the cropped traffic sign images from the training dataset.
+c. Evaluate the performance of the supervised model using the validation dataset. Iterate and fine-tune the model if necessary.
+d. Once satisfied with the model's performance, use the test dataset to evaluate the overall accuracy of the traffic sign classification model.
+
+Combine the two models for an end-to-end solution:
+a. Create a pipeline that takes an input image, processes it with the unsupervised model to detect and crop traffic signs, and feeds the cropped traffic sign image to the supervised model for classification.
+b. Optimize the pipeline for real-time processing by using techniques like model quantization, pruning, or converting the models to a more efficient format like TensorFlow Lite.
+
+Implement the real-time traffic sign detection and prediction system:
+a. Choose a suitable platform for real-time processing, such as a Raspberry Pi, NVIDIA Jetson, or a smartphone with a compatible deep learning framework.
+b. Integrate the optimized pipeline with the platform's camera feed to process the images in real-time.
+c. Test the real-time performance and accuracy of the system on various traffic sign images and scenarios.
+
+Documentation and deployment:
+a. Document the entire development process, including the models' architecture, training parameters, and performance metrics.
+b. Package the code, models, and dependencies for easy deployment and sharing with others.
+
+Following this blueprint should help you build a robust deep learning algorithm for real-time traffic sign detection and prediction using the LISA dataset.
+
+
+I have Download the dataset. Now can you give me the code for each step 1 and 2 please
+
+
+I want to build a Deep Learning Algo on LISA Dataset to detect and predict the traffic signs in real time.
+my plan is to build 2 NN models.
+1st is supervised NN model which detects if there is sign board in the current frame.y values are (X1,Y1) and (X2,Y2)
+after these points are detected, the image is cropped and sent to the 2nd model
+2nd model is a supervised NN model which predicts the sign board.
+Now please give me a blueprint to develop this project. 
