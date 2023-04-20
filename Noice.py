@@ -10,7 +10,7 @@ from PIL.ImageShow import show
 
 def SaveImage(name: str, image: np, displayImage: bool = False) -> None:
     im = Image.fromarray(image.astype(np.uint8))
-    im.save("./output Images/"+name+".png")
+    im.save("./"+name+".png")
     if(displayImage):
         show(im, name)
 
@@ -84,7 +84,7 @@ def Convolve(image: np, kernel: np) -> np:
     return outputImage
 
 # question1
-image = np.array(Image.open('8bit image.png'))
+image = np.array(Image.open('./TrafficSign DataSet/Advance Roundabout Left Turn 2.png'))
 greyScaleFilter = np.array([0.2989, 0.5870, 0.1140])
 greyScaleImage = GrayScaleConverstion(image, greyScaleFilter)
 SaveImage("greyScaleImage", greyScaleImage)
@@ -94,14 +94,6 @@ mean = 0
 gaussianNoisyImage1 = AddGaussianNoise(greyScaleImage,mean,1)
 SaveImage("gaussianNoisyImage1", gaussianNoisyImage1)
 
-gaussianNoisyImage10 = AddGaussianNoise(greyScaleImage,mean,10)
-SaveImage("gaussianNoisyImage10", gaussianNoisyImage10)
-
-gaussianNoisyImage30 = AddGaussianNoise(greyScaleImage,mean,30)
-SaveImage("gaussianNoisyImage30", gaussianNoisyImage30)
-
-gaussianNoisyImage50 = AddGaussianNoise(greyScaleImage,mean,50)
-SaveImage("gaussianNoisyImage50", gaussianNoisyImage50)
 
 # question 3
 saltPepperNoisyImage10 = AddSaltPepperNoise(greyScaleImage,10)
@@ -112,59 +104,41 @@ SaveImage("saltPepperNoisyImage30", saltPepperNoisyImage30)
 
 # question 4
 boxKernel3x3 = GenerateBoxKernel(3)
-boxFilter3x3ImageOnGaussianNoisyImage50 = Convolve(gaussianNoisyImage50, boxKernel3x3)
-SaveImage("boxFilter3x3ImageOnGaussianNoisyImage50", boxFilter3x3ImageOnGaussianNoisyImage50)
 boxFilter3x3ImageOnsaltPepperNoisyImage30 = Convolve(saltPepperNoisyImage30, boxKernel3x3)
 SaveImage("boxFilter3x3ImageOnsaltPepperNoisyImage30", boxFilter3x3ImageOnsaltPepperNoisyImage30)
 
 
-median3x3FilterImageOnGaussianNoisyImage50= MedianFilter(gaussianNoisyImage50,3)
-SaveImage("median3x3FilterImageOnGaussianNoisyImage50", median3x3FilterImageOnGaussianNoisyImage50)
 median3x3FilterImageOnSaltPepperNoisyImage30 = MedianFilter(saltPepperNoisyImage30,3)
 SaveImage("median3x3FilterImageOnSaltPepperNoisyImage30", median3x3FilterImageOnSaltPepperNoisyImage30)
 
 
 gaussianKernel3x3 = GenerateGaussianKernel(3,5)
-gaussian3x3FilterImageOnGaussianNoisy50 = Convolve(gaussianNoisyImage50,gaussianKernel3x3)
-SaveImage("gaussian3x3FilterImageOnGaussianNoisy50", gaussian3x3FilterImageOnGaussianNoisy50)
 gaussian3x3FilterImageOnSaltPepperNoisyImage30  = Convolve(saltPepperNoisyImage30,gaussianKernel3x3)
 SaveImage("gaussian3x3FilterImageOnSaltPepperNoisyImage30", gaussian3x3FilterImageOnSaltPepperNoisyImage30)
 
 
 #Question 5
 boxKernel5x5 = GenerateBoxKernel(5)
-boxFilter5x5ImageOnGaussianNoisyImage50 = Convolve(gaussianNoisyImage50, boxKernel5x5)
-SaveImage("boxFilter5x5ImageOnGaussianNoisyImage50", boxFilter5x5ImageOnGaussianNoisyImage50)
 boxFilter5x5ImageOnsaltPepperNoisyImage30 = Convolve(saltPepperNoisyImage30, boxKernel5x5)
 SaveImage("boxFilter5x5ImageOnsaltPepperNoisyImage30", boxFilter5x5ImageOnsaltPepperNoisyImage30)
 
 
-median5x5FilterImageOnGaussianNoisyImage50= MedianFilter(gaussianNoisyImage50,5)
-SaveImage("median5x5FilterImageOnGaussianNoisyImage50", median5x5FilterImageOnGaussianNoisyImage50)
 median5x5FilterImageOnSaltPepperNoisyImage30 = MedianFilter(saltPepperNoisyImage30,5)
 SaveImage("median5x5FilterImageOnSaltPepperNoisyImage30", median5x5FilterImageOnSaltPepperNoisyImage30)
 
 gaussianKernel5x5 = GenerateGaussianKernel(5,3)
 print(gaussianKernel5x5)
-gaussian5x5FilterImageOnGaussianNoisy50 = Convolve(gaussianNoisyImage50,gaussianKernel5x5)
-SaveImage("gaussian5x5FilterImageOnGaussianNoisy50", gaussian5x5FilterImageOnGaussianNoisy50)
 gaussian5x5FilterImageOnSaltPepperNoisyImage30  = Convolve(saltPepperNoisyImage30,gaussianKernel5x5)
 SaveImage("gaussian5x5FilterImageOnSaltPepperNoisyImage30", gaussian5x5FilterImageOnSaltPepperNoisyImage30)
 
 boxKernel9x9 = GenerateBoxKernel(9)
-boxFilter9x9ImageOnGaussianNoisyImage50 = Convolve(gaussianNoisyImage50, boxKernel9x9)
-SaveImage("boxFilter9x9ImageOnGaussianNoisyImage50", boxFilter9x9ImageOnGaussianNoisyImage50)
 boxFilter9x9ImageOnsaltPepperNoisyImage30 = Convolve(saltPepperNoisyImage30, boxKernel9x9)
 SaveImage("boxFilter9x9ImageOnsaltPepperNoisyImage30", boxFilter9x9ImageOnsaltPepperNoisyImage30)
 
-median9x9FilterImageOnGaussianNoisyImage50= MedianFilter(gaussianNoisyImage50,9)
-SaveImage("median9x9FilterImageOnGaussianNoisyImage50", median9x9FilterImageOnGaussianNoisyImage50)
 median9x9FilterImageOnSaltPepperNoisyImage30 = MedianFilter(saltPepperNoisyImage30,9)
 SaveImage("median9x9FilterImageOnSaltPepperNoisyImage30", median9x9FilterImageOnSaltPepperNoisyImage30)
 
 gaussianKernel9x9 = GenerateGaussianKernel(9,5)
-gaussian9x9FilterImageOnGaussianNoisy50 = Convolve(gaussianNoisyImage50,gaussianKernel9x9)
-SaveImage("gaussian9x9FilterImageOnGaussianNoisy50", gaussian9x9FilterImageOnGaussianNoisy50)
 gaussian9x9FilterImageOnSaltPepperNoisyImage30  = Convolve(saltPepperNoisyImage30,gaussianKernel9x9)
 SaveImage("gaussian9x9FilterImageOnSaltPepperNoisyImage30", gaussian9x9FilterImageOnSaltPepperNoisyImage30)
 
